@@ -1,62 +1,429 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Forum&family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+}
 
-.wrapperScan{
-  width: 100%;
-  height: 100vh;
-  background-image: url(../public/spaceimg.png);
-  background-repeat: no-repeat;
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.c-dashboard {
+  background-color: aquamarine;
+}
+
+.c-loginpage {
+  background-image: url("../public/images/spaceimg.png");
+  height: 100%;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  padding: 50px 0;
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.c-loginpage .c-login.success-popup {
+  opacity: 0.8;
+  pointer-events: none;
+  cursor: default;
+}
+
+.c-loginpage .c-login .logo .unniversarylogo img{
+  width: 260px;
+}
+.c-loginpage .c-login .logo .ujblogo img{
+  width: 70px;
+}
+
+.c-loginpage .c-login .logo {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  row-gap: 64px;
   align-items: center;
-  padding:50px 20px;
-
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
-.QrcodeContainer{
-  width: 90%;
-  text-align: center;
-  color: #FFF;
-  font-family: 'Mukta', sans-serif;
-}
 
-.social-icon{
+.c-loginpage .c-login .regfrom {
+  padding: 16px 42px;
   display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  align-items: center;
+  justify-content: center;
 }
-.social-icon ul{
+
+.c-loginpage .c-login .regfrom input {
+  border-radius: 32px;
+  padding: 0px 40px;
+  width: 100%;
+  outline: none;
+  font-family: "Mukta", sans-serif;
+  font-size: 18px;
+  line-height: 40px;
+  color: #16274f;
+  background-color: #ffffff;
+  border: 1px solid #959595;
+}
+
+.c-loginpage .c-login .regfrom input::placeholder {
+  color: #16274f;
+}
+
+.c-loginpage .c-login .regfrom select {
+  border-radius: 32px;
+  padding: 12px 40px;
+  width: 100%;
+  outline: none;
+  color: #16274f;
+  background-color: #ffffff;
+  border: 1px solid #959595;
+  font-size: 18px;
+  font-family: "Mukta", sans-serif;
+}
+
+.c-loginpage .c-login .regfrom select option {
+  width: 100%;
+  color: #16274f;
+  background-color: #ffffff;
+  border: 1px solid #959595;
+  font-size: 18px;
+  font-family: "Mukta", sans-serif;
+}
+
+.c-loginpage .c-login .regfrom button {
+  border-radius: 32px;
+  background-color: #fe6f06;
+  font-size: 24px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Mukta", sans-serif;
+  border: none;
+  width: 100%;
+}
+
+.c-loginpage .c-popupbg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
   display: flex;
-  list-style-type: none;
-  column-gap: 15px;
-  padding: 0px;
-  margin: 0px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.8);
 }
-.social-icon li{
-  list-style-type: none;
-}
-/* .logo {
-  margin-top: 50px;
-} */
-.logo img{
+
+.c-loginpage .c-loginpopup {
+  max-width: 460px;
   width: 90%;
-  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 60px 22px;
+  position: relative;
+}
+
+.c-loginpage .c-loginpopup.showpopup {
   display: block;
+}
+
+.c-loginpage .c-loginpopup img {
+  position: absolute;
+  top: calc(-50% + 60px);
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.c-loginpage .c-loginpopup h5 {
+  font-size: 24px;
+  line-height: 40px;
+  color: #16274f;
+  font-weight: 500;
+  font-family: "Mukta", sans-serif;
+  text-align: center;
+}
+
+.c-loginpage .c-loginpopup h4 {
+  font-size: 42px;
+  line-height: 40px;
+  color: #fe6f06;
+  text-align: center;
+  font-weight: 400;
+  font-family: "Forum";
+}
+
+.bg-popup {
+  /* background-color: #959595; */
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.c-loginpopup {
+  z-index: 1;
+}
+
+.c-loginpopup {
+  z-index: 1;
+}
+
+.c-logindone h2 {
+  font-size: 24px;
+  line-height: 30px;
+  color: #a2cbda;
+  font-weight: 500;
+  font-family: "forum";
+  text-align: center;
+  margin-top: 40px;
+}
+
+.c-logindone ul li h5 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Mukta", sans-serif;
+  text-align: center;
+}
+
+.c-logindone ul li h6 {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Mukta", sans-serif;
+  text-align: center;
+
+}
+
+.c-logindone ul li {
+  display: flex;
+  line-height: 22px;
+  column-gap: 6px;
+  /* padding: 12px 20px; */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.show-counter {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.show-counter .eventdate {
+  font-size: 24px;
+  line-height: 40px;
+  color: #ffffff;
+  font-weight: 400;
+  font-family: "Forum";
+  margin-bottom: 40px;
+}
+
+.show-counter .countdown-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  column-gap: 10px;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.show-counter .countdown-link .eventday .countdown {
+  font-size: 70px;
+  line-height: 64px;
+  color: #fe6f06;
+  font-weight: 800;
+  font-family: "Mukta", sans-serif;
+  text-align: center;
+  display: flex;
+  column-gap: 10px;
+
+}
+
+.show-counter .countdown-link .eventtime .countdown {
+  font-size: 22px;
+  line-height: 22px;
+  color: #a2cbda;
+  font-weight: 600;
+  font-family: "Mukta";
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+.show-counter .countdown-link .eventtime {
+  display: flex;
+  column-gap: 10px;
+}
+
+.countdownfour {
+    font-size: 70px;
+    line-height: 64px;
+    color: #fe6f06;
+    font-weight: 800;
+    font-family: "Mukta", sans-serif;
+    text-align: center;
+    display: flex;
+    column-gap: 10px;
+}
+
+.show-counter .countdown-link .eventtime p {
+  display: flex;
+  font-size: 24px;
+  line-height: 24px;
+  color: #a2cbda;
+  font-weight: 600;
+  font-family: "Mukta";
+}
+
+.c-logindone .logos {
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+}
+
+.c-logindone .logos .unniversaryl img{
+  width: 260px;
+}
+.c-logindone .logos .ujbl img{
+  width: 70px;
+}
+
+.c-logindone .logos .welcome {
+  color: #a2cbda;
+  font-weight: 600;
+  font-family: "Mukta";
+  font-size: 16px;
+}
+/* .c-logindone .logos .welcome span {
+  font-weight: 800;
+} */
+
+.c-logindone .scan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.c-logindone button {
+  border-radius: 32px;
+  background-color: #fe6f06;
+  font-size: 24px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Mukta", sans-serif;
+  border: none;
+  width: 80%;
 }

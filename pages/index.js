@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Login from '../component/Login'
 
 
 export default function Home() {
@@ -28,36 +29,37 @@ export default function Home() {
 
 
   return (
-    <section className="wrapperScan">
+    <Login/>
+    // <section className="wrapperScan">
 
 
 
-      <div className='logo'>
-        {/* <h1>Welcome to UjustBe Universe</h1> */}
-        <img src='/universary.svg' />
-      </div>
+    //   <div className='logo'>
+    //     {/* <h1>Welcome to UjustBe Universe</h1> */}
+    //     <img src='/universary.svg' />
+    //   </div>
 
-      <div>
-        Welcome to UjustBe Unniverse
-      </div>
+    //   <div>
+    //     Welcome to UjustBe Unniverse
+    //   </div>
 
 
-      <div className='social-icon'>
-        <ul>
-          <li>
-            <Link href="/blog/hello-world">
-              <a>
-                <img src='/icon-fb.png' />
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/blog/hello-world">
-              <a><img src='/icon-ints.png' /></a>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </section>
+    //   <div className='social-icon'>
+    //     <ul>
+    //       <li>
+    //         <Link href="/blog/hello-world">
+    //           <a>
+    //             <img src='/icon-fb.png' />
+    //           </a>
+    //         </Link>
+    //       </li>
+    //       <li>
+    //         <Link href="/blog/hello-world">
+    //           <a><img src='/icon-ints.png' /></a>
+    //         </Link>
+    //       </li>
+    //     </ul>
+    //   </div>
+    // </section>
   )
 }
