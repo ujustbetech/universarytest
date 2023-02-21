@@ -1,0 +1,36 @@
+<svg id="Group_1_copy_4" data-name="Group 1 copy 4" xmlns="http://www.w3.org/2000/svg" width="1028" height="247.688" viewBox="0 0 1028 247.688">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        font-size: 60px;
+        font-weight: 800;
+      }
+
+      .cls-1 {
+        fill: #a2cbda;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-5 {
+        font-family: Mukta;
+      }
+
+      .cls-2, .cls-4, .cls-5 {
+        fill: #fe6f06;
+      }
+
+      .cls-3, .cls-6 {
+        fill: #819eb1;
+      }
+
+      .cls-5 {
+        font-size: 24px;
+        font-weight: 200;
+      }
+    </style>
+  </defs>
+  <text id="U" class="cls-1" transform="translate(-12.044 196.222) scale(3.165)">U</text>
+  <text id="n" class="cls-2" transform="matrix(-3.165, 0, 0, 3.165, 217.206, 196.222)">n</text>
+  <text id="niversary" class="cls-3" transform="translate(203.156 196.222) scale(3.165)">n<tspan class="cls-4">i</tspan>versary</text>
+  <text id="UJustBe_Anniversary" data-name="UJustBe Anniversary" class="cls-5" transform="translate(399.368 66.469) scale(3.165)">U<tspan class="cls-6">JustBe A</tspan>nniversary</text>
+  <circle class="cls-4" cx="339.25" cy="47.485" r="47.469"/>
+</svg>

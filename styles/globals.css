@@ -1,0 +1,62 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+.wrapperScan{
+  width: 100%;
+  height: 100vh;
+  background-image: url(../public/spaceimg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding:50px 20px;
+
+}
+
+.QrcodeContainer{
+  width: 90%;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Mukta', sans-serif;
+}
+
+.social-icon{
+  display: flex;
+}
+.social-icon ul{
+  display: flex;
+  list-style-type: none;
+  column-gap: 15px;
+  padding: 0px;
+  margin: 0px;
+}
+.social-icon li{
+  list-style-type: none;
+}
+/* .logo {
+  margin-top: 50px;
+} */
+.logo img{
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
