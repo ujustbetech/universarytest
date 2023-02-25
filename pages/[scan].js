@@ -48,11 +48,11 @@ export default function Scan({ eventsName }) {
 
   const scanFood = async (e) => {
     e.preventDefault();
-    setfoodScanner(true);
+    // setfoodScanner(true);
     // const saved = localStorage.getItem("itmes");
     // const localstoragedata = JSON.parse(saved)
     // console.log("current login", localstoragedata.phonenumber);
-    // router2.push("/" + localstoragedata.phonenumber)
+    router2.push("/foodscan")
 
 
   }
@@ -99,45 +99,7 @@ export default function Scan({ eventsName }) {
         axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
           console.log(response);
           const alldata = response.data;
-          localStorage.setItem('qrdata', JSON.stringify(response.data));
-          setAllData(alldata);
-          setPesent(true)
-        });
-
-
-
-      }
-
-
-    }
-  }
-  const handleScanWebCamfood = (result) => {
-    // const saved = localStorage.getItem("items");
-    const saved = localStorage.getItem("itmes");
-    const localstoragedata = JSON.parse(saved)
-    // console.log("current login", saved);
-
-    if (result) {
-      const text3 = JSON.stringify(result)
-      console.log(result, "text food", result[15]);
-
-
-
-      console.log("test data food");
-      if (result[15] === "1") {
-        console.log("food suscess");
-
-        const data = {
-          phonenumber: localstoragedata.phonenumber,
-          firstname: localstoragedata.firstname,
-          lastname: localstoragedata.lastname,
-          foodcounter: "1"
-
-        }
-        axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
-          console.log(response);
-          const alldata = response.data;
-          localStorage.setItem('qrdata', JSON.stringify(response.data));
+          localStorage.setItem('itmes', JSON.stringify(response.data));
           setAllData(alldata);
           setPesent(true)
         });
@@ -155,23 +117,23 @@ export default function Scan({ eventsName }) {
     console.log(error);
   }
 
-  const foodClick = async (e) => {
-    e.preventDefault();
+  // const foodClick = async (e) => {
+  //   e.preventDefault();
 
-    axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
-      console.log(response);
-      const alldata = response.data;
-      localStorage.setItem('qrdata', JSON.stringify(response.data));
-      setAllData(alldata);
-      setPesent(true)
-    });
-
-
+  //   axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
+  //     console.log(response);
+  //     const alldata = response.data;
+  //     localStorage.setItem('qrdata', JSON.stringify(response.data));
+  //     setAllData(alldata);
+  //     setPesent(true)
+  //   });
 
 
 
-    console.log(showpopup);
-  };
+
+
+  //   console.log(showpopup);
+  // };
 
 
   useEffect(() => {
@@ -340,31 +302,16 @@ export default function Scan({ eventsName }) {
 
         </div>
       }
+      {
+        present ? null
+    :<div className='footerHome'>
+    <h2>Please Scan here to Experience Space</h2>
+  </div>}
 
       {
-        foodscanner ? <div className='qrPopup'>
-          <div className='QrcodeContainer'>
-            {
-              alldata.foodcounter === 1 ? <h2>Experience Tonight's delicacies </h2> : <QrReader
-                delay={300}
-                style={{ width: '100%' }}
-                onError={handleErrorWebCam}
-                onScan={handleScanWebCamfood}
-              />
-            }
-
-            {/* <h2>Scan here</h2> */}
-
-            <button className='scanButton' onClick={closeScaner}>Close Scanner</button>
-
-
-          </div>
-        </div> : null
-      }
-
-      {
-        <div className='scanContainer scanbuttonfixed'>
-          <button className='scanButton2' onClick={scanFood}>Food</button></div>
+        present ?
+          <div className='scanContainer'>
+            <button className='scanButton2 scanbuttonfixed' onClick={scanFood}>Food</button></div> : null
       }
 
 

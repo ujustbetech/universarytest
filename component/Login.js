@@ -50,7 +50,7 @@ function Login() {
                 setresponsedata(alldata)
                 if (alldata.attendance === 1) {
                     // setPesent(true)
-                    router2.push("/" + localstoragedata.phonenumber )
+                    router2.push("/" + localstoragedata.phonenumber)
                 }
                 // if (alldata.foodcounter === 1) {
                 //   setfoodcounter(true)
@@ -223,7 +223,13 @@ function Login() {
                             </div>
                         </div>
                         {
-                            attendance ? null : <div className='scan'>
+                            attendance ? <div className='welcomemessage'>
+                                <h5>
+                                    Something Plus Business
+                                </h5>
+                                <h6>Welcome to Exploration Journey {responsedata.firstname} {responsedata.lastname}</h6>
+
+                            </div> : <div className='scan'>
                                 <button onClick={scanClick}>Scan Attendance</button></div>
                         }
 
