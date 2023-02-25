@@ -20,17 +20,43 @@ function Login() {
 
     const router2 = useRouter()
 
+    // useEffect(() => {
+    //     const saved = localStorage.getItem("itmes");
+    //     const localstoragedata = JSON.parse(saved)
+    //     if (saved) {
+    //         console.log("already Login", localstoragedata.firstname);
+    //         setlogin(false);
+    //         setloginDone(true);
+    //         setresponsedata(localstoragedata)
+    //         // console.log(responsedata.firstname);
+    //         router2.push("/" + localstoragedata.phonenumber )
+
+    //     } else {
+
+    //     }
+    // }, [])
+
     useEffect(() => {
+
+
         const saved = localStorage.getItem("itmes");
         const localstoragedata = JSON.parse(saved)
+
         if (saved) {
             console.log("already Login", localstoragedata.firstname);
-            setlogin(false);
-            setloginDone(true);
-            setresponsedata(localstoragedata)
-            // console.log(responsedata.firstname);
+            axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${localstoragedata.phonenumber}/`).then(response => {
+                console.log(response);
+                const alldata = response.data;
+                setresponsedata(alldata)
+                if (alldata.attendance === 1) {
+                    // setPesent(true)
+                    router2.push("/" + localstoragedata.phonenumber )
+                }
+                // if (alldata.foodcounter === 1) {
+                //   setfoodcounter(true)
+                // }
 
-        } else {
+            });
 
         }
     }, [])
@@ -47,8 +73,8 @@ function Login() {
             firstname: localdata.firstname,
             lastname: localdata.lastname,
             phonenumber: localdata.phonenumber,
-            attendance:localdata.attendance,
-            foodcounter:localdata.foodcounter
+            attendance: localdata.attendance,
+            foodcounter: localdata.foodcounter
 
         }
         localStorage.setItem('itmes', JSON.stringify(itmes));
@@ -126,6 +152,7 @@ function Login() {
                     // setfoodcounter(true)
                     setresponsedata(response.data);
                     localstorage(response.data);
+                    router2.push("/" + response.data.phonenumber)
                 }
                 //   this.setState ({posts});
             }).catch((error) => {
@@ -195,114 +222,11 @@ function Login() {
                                 <img src="/images/unniversary.png" />
                             </div>
                         </div>
-                        
-                        
-                        <div className='programsequence'>
-                            <h2>Trajectory</h2>
-                            <ul>
-                                <li>
-                                    <h6>Ganesh Vandana</h6>
-                                    <p>Prarthana by Ashwin Joshi</p>
-                                </li>
-                                <li>
-                                    <h6>Welcome Note</h6>
-                                    <p>Abhishek and Gaurav</p>
-                                </li>
-                                <li>
-                                    <h6>Journey</h6>
-                                    <p>Journey Video</p>
-                                </li>
-                                <li>
-                                    <h6>Value Introduction</h6>
-                                    <p>Poem by Sonali Korde </p>
-                                </li>
-                                <li>
-                                    <h6>Integrity</h6>
-                                    <p>Song by Rajendra Bhide</p>
-                                </li>
-                                <li>
-                                    <h6>Responsible</h6>
-                                    <p>Song by Rajendra Bhide</p>
-                                </li>
-                                <li>
-                                    <h6>Selfless</h6>
-                                    <p>Song by Satish Thampi</p>
-                                </li>
-                                <li>
-                                    <h6>Award</h6>
-                                    <p>Most Exploring Orbiter</p>
-                                </li>
-                                <li>
-                                    <h6>Fairness</h6>
-                                    <p>Poem by Rupali Kamat / Song by Kishore Hegde</p>
-                                </li>
-                                <li>
-                                    <h6>Inclusive</h6>
-                                    <p>Song by Sudhakar Patole</p>
-                                </li>
-                                <li>
-                                    <h6>Openness</h6>
-                                    <p>Dance by Minal Govalkar</p>
-                                </li>
-                                <li>
-                                    <h6>Award </h6>
-                                    <p>Most Responsible Cosmonaut</p>
-                                </li>
-                                <li>
-                                    <h6>Authenticity </h6>
-                                    <p>Game activity by Smita Kadu</p>
-                                </li>
-                                <li>
-                                    <h6>Caring </h6>
-                                    <p>Poem by Kanchan Utekar</p>
-                                </li>
-                                <li>
-                                    <h6>Awareness </h6>
-                                    <p>Magic Show by Deepak Pande</p>
-                                </li>
-                                <li>
-                                    <h6>Award </h6>
-                                    <p>Most Selfless Propeller</p>
-                                </li>
-                                <li>
-                                    <h6>Explore </h6>
-                                    <p>Game activity by Smita Kadu</p>
-                                </li>
-                                <li>
-                                    <h6>Communication </h6>
-                                    <p>Standup performance by Rashmi Agaskar</p>
-                                </li>
-                                <li>
-                                    <h6>Bold </h6>
-                                    <p>Supernova Walk</p>
-                                </li>
-                                <li>
-                                    <h6>Award  </h6>
-                                    <p>The ContriOrbitor</p>
-                                </li>
-                                <li>
-                                    <h6>Nucleus Team  </h6>
-                                    <p>Journey / Rewards & Recongnization</p>
-                                </li>
-                                <li>
-                                    <h6>Something + Business</h6>
-                                    <p>By Founders</p>
-                                </li>
-                                <li>
-                                    <h6>Open Space</h6>
-                                    <p>Open Space</p>
-                                </li>
-                                <li>
-                                    <h6>Dinner</h6>
-                                    <p>Dinner</p>
-                                </li>
-                            </ul>
-
-                        </div>
-                        {attendance ? null: <div className='scan'>
-                        <button onClick={scanClick}>Scan Attendance</button></div>
+                        {
+                            attendance ? null : <div className='scan'>
+                                <button onClick={scanClick}>Scan Attendance</button></div>
                         }
-                        
+
                     </div> : null
                 }
                 {
