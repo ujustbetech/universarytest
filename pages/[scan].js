@@ -4,16 +4,18 @@ import Image from 'next/image'
 import QRCode from 'qrcode'
 import Link from 'next/link'
 import axios from 'axios';
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 // import QrReader from 'react-qr-reader';
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from 'react';
+import { Router, useRouter } from 'next/router';
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 
 export default function Scan({ eventsName }) {
 
-  console.log("EventsName:", eventsName.scan);
-
+  // console.log("EventsName:", eventsName.scan);
+  const queryname = eventsName.scan;
+  console.log(queryname);
   const [text, setText] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [scanResultFile, setScanResultFile] = useState('');
@@ -28,10 +30,42 @@ export default function Scan({ eventsName }) {
   const [role, setrole] = useState();
   const [registeration, setregisteration] = useState();
   const [attendance, setattendance] = useState();
-  const [foodcounter, setfoodcounter] = useState();
+
+  const [foodcounter, setfoodcounter] = useState(false);
+  const [foodscanner, setfoodScanner] = useState(false);
   const [alldata, setAllData] = useState({});
+  const [present, setPesent] = useState(false);
+  const [loginfailedpopup, setLoginfailedpopup] = useState(false);
+  const router2 = useRouter();
+
+
+
+
+  // const [attendance, setLogin] = useState(false);
+
 
   const router = useRouter()
+
+  const scanFood = async (e) => {
+    e.preventDefault();
+    setfoodScanner(true);
+    // const saved = localStorage.getItem("itmes");
+    // const localstoragedata = JSON.parse(saved)
+    // console.log("current login", localstoragedata.phonenumber);
+    // router2.push("/" + localstoragedata.phonenumber)
+
+
+  }
+  const closeScaner = async (e) => {
+    e.preventDefault();
+    setfoodScanner(false);
+    // const saved = localStorage.getItem("itmes");
+    // const localstoragedata = JSON.parse(saved)
+    // console.log("current login", localstoragedata.phonenumber);
+    // router2.push("/" + localstoragedata.phonenumber)
+
+
+  }
 
   const onScanFile = () => {
     qrRef.current.openImageDialog();
@@ -42,25 +76,17 @@ export default function Scan({ eventsName }) {
   const handleScanWebCam = (result) => {
     // const saved = localStorage.getItem("items");
     const saved = localStorage.getItem("itmes");
-        const localstoragedata = JSON.parse(saved)
-    console.log("current login", saved);
+    const localstoragedata = JSON.parse(saved)
+    // console.log("current login", saved);
 
     if (result) {
       const text3 = JSON.stringify(result)
-     console.log(result[17], "text2", result[14]);
+      console.log(result[17], "text2", result[14]);
 
-    const  testdata = {
-        partnername: "Shruti madhav",
-        phonenumber: "1234",
-        profile: "shruti.com",
-        attend: "1"
-  
-      }
 
-      
 
       console.log("test data");
-      if ( result[14] === "1") {
+      if (result[14] === "1") {
         console.log("suscess");
 
         const data = {
@@ -70,219 +96,57 @@ export default function Scan({ eventsName }) {
           attendance: "1"
 
         }
-        axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/'+ localstoragedata.phonenumber, data).then(response => {
+        axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
           console.log(response);
           const alldata = response.data;
-          // localStorage.setItem('qrdata', JSON.stringify(response.data));
-          // setAllData(alldata);
+          localStorage.setItem('qrdata', JSON.stringify(response.data));
+          setAllData(alldata);
+          setPesent(true)
         });
 
-        
-        if (alldata.attendance === "0") {
-          const data = {
-            phonenumber: alldata.phonenumber,
-            firstname: alldata.firstname,
-            lastname: alldata.lastname,
-            attendance: "1"
 
-          }
-          axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/'+alldata.phonenumber, data).then(response => {
-            console.log(response);
-            const alldata = response.data;
-            localStorage.setItem('qrdata', JSON.stringify(response.data));
-            setAllData(alldata);
-          });
-        }
-        else{
 
-        }
       }
-      
-      // console.log(result);
-      // if (saved) {
 
-      //   if (result2.Type === "attendance") {
-      //     if (alldata.attendance === "0") {
-      //       const data = {
-      //         phonenumber: alldata.phonenumber,
-      //         firstname: alldata.firstname,
-      //         lastname: alldata.lastname,
-      //         attendance: "1"
-  
-      //       }
-      //       axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/'+alldata.phonenumber, data).then(response => {
-      //         console.log(response);
-      //         const alldata = response.data;
-      //         localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //         setAllData(alldata);
-      //       });
-      //     }
-      //     else{
 
-      //     }
-      //   }
-        
-      //   if (result2.Type === "foodcounter") {
-      //     if (alldata.foodcounter === "0") {
-      //       const data = {
-      //         phonenumber: alldata.phonenumber,
-      //         firstname: alldata.firstname,
-      //         lastname: alldata.lastname,
-      //         foodcounter: "1"
-      //       }
-      //       axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/'+alldata.phonenumber, data).then(response => {
-      //         console.log(response);
-      //         const alldata = response.data;
-      //         localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //         setAllData(alldata);
-      //       });
-      //     }
-      //     else{
+    }
+  }
+  const handleScanWebCamfood = (result) => {
+    // const saved = localStorage.getItem("items");
+    const saved = localStorage.getItem("itmes");
+    const localstoragedata = JSON.parse(saved)
+    // console.log("current login", saved);
 
-      //     }
-      //   }
+    if (result) {
+      const text3 = JSON.stringify(result)
+      console.log(result, "text food", result[15]);
 
-      //   // if (result2.Type === "Bootcamp1") {
-      //   //   if (alldata.Bootcamp1 === "0") {
-      //   //     const data = {
-      //   //       partnername: alldata.partnername,
-      //   //       phonenumber: alldata.phonenumber,
-      //   //       profile: alldata.profile,
-      //   //       Bootcamp1: "1"
-  
-      //   //     }
-      //   //     axios.put('http://15.206.163.60/api/'+alldata.phonenumber, data).then(response => {
-      //   //       console.log(response);
-      //   //       const alldata = response.data;
-      //   //       localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //   //       setAllData(alldata);
-      //   //     });
-      //   //   }
-      //   //   else{
 
-      //   //   }
-      //   // } 
 
-      //   // if (result2.Type === "Bootcamp4") {
-      //   //   if (alldata.Bootcamp4 === "0") {
-      //   //     const data = {
-      //   //       partnername: alldata.partnername,
-      //   //       phonenumber: alldata.phonenumber,
-      //   //       profile: alldata.profile,
-      //   //       Bootcamp4: "1"
-  
-      //   //     }
-      //   //     axios.put('http://15.206.163.60/api/'+alldata.phonenumber, data).then(response => {
-      //   //       console.log(response);
-      //   //       const alldata = response.data;
-      //   //       localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //   //       setAllData(alldata);
-      //   //     });
-      //   //   }
-      //   //   else{
+      console.log("test data food");
+      if (result[15] === "1") {
+        console.log("food suscess");
 
-      //   //   }
-      //   // } 
-      //   // if (result2.Type === "tea") {
-      //   //   if (alldata.tea === "0") {
-      //   //     const data = {
-      //   //       partnername: alldata.partnername,
-      //   //       phonenumber: alldata.phonenumber,
-      //   //       profile: alldata.profile,
-      //   //       tea: "1"
-  
-      //   //     }
-      //   //     axios.put('http://15.206.163.60/api/'+alldata.phonenumber, data).then(response => {
-      //   //       console.log(response);
-      //   //       const alldata = response.data;
-      //   //       localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //   //       setAllData(alldata);
-      //   //     });
-      //   //   }
-      //   //   else{
+        const data = {
+          phonenumber: localstoragedata.phonenumber,
+          firstname: localstoragedata.firstname,
+          lastname: localstoragedata.lastname,
+          foodcounter: "1"
 
-      //   //   }
-      //   // } 
-      //   // if (result2.Type === "dinner") {
-      //   //   if (alldata.tea === "0") {
-      //   //     const data = {
-      //   //       partnername: alldata.partnername,
-      //   //       phonenumber: alldata.phonenumber,
-      //   //       profile: alldata.profile,
-      //   //       dinner: "1"
-  
-      //   //     }
-      //   //     axios.put('http://15.206.163.60/api/'+alldata.phonenumber, data).then(response => {
-      //   //       console.log(response);
-      //   //       const alldata = response.data;
-      //   //       localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //   //       setAllData(alldata);
-      //   //     });
-      //   //   }
-      //   //   else{
+        }
+        axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
+          console.log(response);
+          const alldata = response.data;
+          localStorage.setItem('qrdata', JSON.stringify(response.data));
+          setAllData(alldata);
+          setPesent(true)
+        });
 
-      //   //   }
-      //   // } 
-        
-        
-      //   console.log("All ready Login");
-      //   console.log("all userData", alldata);
-      // } else {
-      //   // if (result2.Type === "attendance") {
-      //     if (alldata.attendance === "0") {
-      //       const data = {
-      //         phonenumber: alldata.phonenumber,
-      //         firstname: alldata.firstname,
-      //         lastname: alldata.lastname,
-      //         attendance: "1"
-  
-      //       }
-      //       axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/'+alldata.phonenumber, data).then(response => {
-      //         console.log(response);
-      //         const alldata = response.data;
-      //         localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //         setAllData(alldata);
-      //       });
-      //     }
-      //     else{
 
-      //     }
-        
-      //   console.log("Not Login yet");
-      //   console.log("all userData", alldata.attend);
-      //   //localStorage.setItem('qrdata', result3);
-      //   // axios.get(`http://15.206.163.60/api/7208553985`)
-      //   //   .then(res => {
-      //   //     console.log(res);
-      //   //     const persons = res.data;
-      //   //     setAllData({ persons });
-      //   //   })
 
-      //   // console.log(result2.attend);
-      //   // if (result2.Type === "attend") {
-      //   //   if (alldata.attend === "0") {
-      //   //     console.log("false");
-      //   //     const data = {
-      //   //       partnername: alldata.partnername,
-      //   //       phonenumber: alldata.phonenumber,
-      //   //       profile: alldata.profile,
-      //   //       attend: "1"
-  
-      //   //     }
-      //   //     axios.put('http://15.206.163.60/api/'+alldata.phonenumber, data).then(response => {
-      //   //       console.log(response);
-      //   //       const alldata = response.data;
-      //   //       localStorage.setItem('qrdata', JSON.stringify(response.data));
-      //   //       setAllData(alldata);
-      //   //     });
-      //   //   }
-      //   //   else {
-      //   //     console.log("Attendance true");
-           
-      //   //   }
-      //   // }
-      // }
-      // // setScanResultWebCam(result);
+      }
+
+
     }
   }
 
@@ -291,44 +155,75 @@ export default function Scan({ eventsName }) {
     console.log(error);
   }
 
-  // const onScanFile = () => {
-  //   qrRef.current.openImageDialog();
-  // }
-  // const handleErrorWebCam = (error) => {
-  //   console.log(error);
-  // }
+  const foodClick = async (e) => {
+    e.preventDefault();
+
+    axios.put('https://plankton-app-i2dnd.ondigitalocean.app/login/' + localstoragedata.phonenumber + '/', data).then(response => {
+      console.log(response);
+      const alldata = response.data;
+      localStorage.setItem('qrdata', JSON.stringify(response.data));
+      setAllData(alldata);
+      setPesent(true)
+    });
+
+
+
+
+
+    console.log(showpopup);
+  };
+
 
   useEffect(() => {
-    localStorage.setItem('qrphone', eventsName.scan);
-    const data = {
-      partnername: "Shruti madhav",
-      phonenumber: "1234",
-      profile: "shruti.com",
-      attend: "1"
 
+
+    const saved = localStorage.getItem("itmes");
+    const localstoragedata = JSON.parse(saved)
+
+    if (saved) {
+      console.log("already Login", localstoragedata.firstname);
+      if (queryname === localstoragedata.phonenumber) {
+        console.log("number match");
+        axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${queryname}/`).then(response => {
+          console.log(response);
+          const alldata = response.data;
+          setAllData(alldata)
+          if (alldata.attendance === 1) {
+            setPesent(true)
+          }
+          // if (alldata.foodcounter === 1) {
+          //   setfoodcounter(true)
+          // }
+
+        });
+      }
+
+      else {
+        console.log("Invalid URL");
+        setLoginfailedpopup(true);
+      }
+
+
+    } else {
+      router2.push("/")
     }
-    // axios.put('http://15.206.163.60/api/'+eventsName.scan, data).then(response => {
-    //   console.log(response);
-    // });
-
-
-    // return () => {
-    //   second
-    // }
   }, [])
 
 
 
   return (
     <section className="wrapperScan">
-
-
-
       <div className='logo'>
         <img src='/universary.svg' />
       </div>
-      <div className='QrcodeContainer'>
-    
+      {
+        present ? <div className='welcomemessage'>
+          <h2>
+            Something Plus Business
+          </h2>
+          <p>Welcome to Exploration Journey {alldata.firstname} {alldata.lastname}</p>
+        </div> : <div className='QrcodeContainer'>
+
           <QrReader
             delay={300}
             style={{ width: '100%' }}
@@ -336,28 +231,54 @@ export default function Scan({ eventsName }) {
             onScan={handleScanWebCam}
           />
           <h2>Scan here</h2>
-    
 
-     
 
-      </div>
-      <div className='social-icon'>
-        <ul>
-          <li>
-            <Link href="/blog/hello-world">
-              <a>
-                <img src='/icon-fb.png' />
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/blog/hello-world">
-              <a><img src='/icon-ints.png' /></a>
-            </Link>
-          </li>
-        </ul>
-      </div>
+        </div>
+      }
+
+      {
+        foodscanner ? <div className='qrPopup'>
+          <div className='QrcodeContainer'>
+            {
+              alldata.foodcounter === 1?<h2>Experience Tonight's delicacies </h2>:<QrReader
+              delay={300}
+              style={{ width: '100%' }}
+              onError={handleErrorWebCam}
+              onScan={handleScanWebCamfood}
+            />
+            }
+            
+            {/* <h2>Scan here</h2> */}
+
+            <button className='scanButton' onClick={closeScaner}>Close Scanner</button>
+
+
+          </div>
+        </div> : null
+      }
+
+      {
+        <div className='scanContainer'>
+          <button className='scanButton2' onClick={scanFood}>Food</button></div>
+      }
+
+
+      {
+        loginfailedpopup ? <div className='c-popupbg'>
+          <div className='bg-popup'></div>
+          <div className='c-loginpopup'>
+            <div>
+              <img src="/images/cancel_icon.png" />
+              <h5>You are trying to login from wrong device </h5>
+              {/* <h4>Welcome to celebration </h4> */}
+            </div>
+          </div></div> : null
+      }
+
     </section>
+
+
+
   )
 }
 export async function getServerSideProps({ query }) {

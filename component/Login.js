@@ -15,6 +15,8 @@ function Login() {
     const [loginstate, setlogin] = useState(true);
     const [loginfailedpopup, setloginfailedpopup] = useState(false);
     const [loginDone, setloginDone] = useState(false);
+    const [attendance, setattendance] = useState(false);
+    const [foodcounter, setfoodcounter] = useState(false);
 
     const router2 = useRouter()
 
@@ -22,16 +24,16 @@ function Login() {
         const saved = localStorage.getItem("itmes");
         const localstoragedata = JSON.parse(saved)
         if (saved) {
-            console.log("already Login",  localstoragedata.firstname );
+            console.log("already Login", localstoragedata.firstname);
             setlogin(false);
             setloginDone(true);
             setresponsedata(localstoragedata)
             // console.log(responsedata.firstname);
-            
+
         } else {
-            
+
         }
-      }, [])
+    }, [])
 
     const hidepopup = (e) => {
         setshowpopup(false)
@@ -45,6 +47,9 @@ function Login() {
             firstname: localdata.firstname,
             lastname: localdata.lastname,
             phonenumber: localdata.phonenumber,
+            attendance:localdata.attendance,
+            foodcounter:localdata.foodcounter
+
         }
         localStorage.setItem('itmes', JSON.stringify(itmes));
     };
@@ -57,7 +62,7 @@ function Login() {
         const localstoragedata = JSON.parse(saved)
         console.log("current login", localstoragedata.phonenumber);
         router2.push("/" + localstoragedata.phonenumber)
-        
+
 
     }
 
@@ -111,13 +116,15 @@ function Login() {
             // 
             .then(response => {
                 const posts = response.data;
+                console.log("all data", posts);
                 setresponsedata(response.data);
                 console.log("after login", response);
                 if (response.status === 200) {
                     setloginDone(true)
                     setlogin(false)
+                    setattendance(true)
+                    // setfoodcounter(true)
                     setresponsedata(response.data);
-
                     localstorage(response.data);
                 }
                 //   this.setState ({posts});
@@ -188,37 +195,114 @@ function Login() {
                                 <img src="/images/unniversary.png" />
                             </div>
                         </div>
-                        <div className='show-counter'>
-                            <div className='eventdate'>
-                                <h4>26th February 2023</h4>
-                            </div>
-                            <div className='countdownfour'>
-                                {TotalDays} DAYS
-                                {/* <DateTimeDisplay value={days} type={'DAYS'} isDanger={days <= 3} /> */}
-                            </div>
+                        
+                        
+                        <div className='programsequence'>
+                            <h2>Trajectory</h2>
+                            <ul>
+                                <li>
+                                    <h6>Ganesh Vandana</h6>
+                                    <p>Prarthana by Ashwin Joshi</p>
+                                </li>
+                                <li>
+                                    <h6>Welcome Note</h6>
+                                    <p>Abhishek and Gaurav</p>
+                                </li>
+                                <li>
+                                    <h6>Journey</h6>
+                                    <p>Journey Video</p>
+                                </li>
+                                <li>
+                                    <h6>Value Introduction</h6>
+                                    <p>Poem by Sonali Korde </p>
+                                </li>
+                                <li>
+                                    <h6>Integrity</h6>
+                                    <p>Song by Rajendra Bhide</p>
+                                </li>
+                                <li>
+                                    <h6>Responsible</h6>
+                                    <p>Song by Rajendra Bhide</p>
+                                </li>
+                                <li>
+                                    <h6>Selfless</h6>
+                                    <p>Song by Satish Thampi</p>
+                                </li>
+                                <li>
+                                    <h6>Award</h6>
+                                    <p>Most Exploring Orbiter</p>
+                                </li>
+                                <li>
+                                    <h6>Fairness</h6>
+                                    <p>Poem by Rupali Kamat / Song by Kishore Hegde</p>
+                                </li>
+                                <li>
+                                    <h6>Inclusive</h6>
+                                    <p>Song by Sudhakar Patole</p>
+                                </li>
+                                <li>
+                                    <h6>Openness</h6>
+                                    <p>Dance by Minal Govalkar</p>
+                                </li>
+                                <li>
+                                    <h6>Award </h6>
+                                    <p>Most Responsible Cosmonaut</p>
+                                </li>
+                                <li>
+                                    <h6>Authenticity </h6>
+                                    <p>Game activity by Smita Kadu</p>
+                                </li>
+                                <li>
+                                    <h6>Caring </h6>
+                                    <p>Poem by Kanchan Utekar</p>
+                                </li>
+                                <li>
+                                    <h6>Awareness </h6>
+                                    <p>Magic Show by Deepak Pande</p>
+                                </li>
+                                <li>
+                                    <h6>Award </h6>
+                                    <p>Most Selfless Propeller</p>
+                                </li>
+                                <li>
+                                    <h6>Explore </h6>
+                                    <p>Game activity by Smita Kadu</p>
+                                </li>
+                                <li>
+                                    <h6>Communication </h6>
+                                    <p>Standup performance by Rashmi Agaskar</p>
+                                </li>
+                                <li>
+                                    <h6>Bold </h6>
+                                    <p>Supernova Walk</p>
+                                </li>
+                                <li>
+                                    <h6>Award  </h6>
+                                    <p>The ContriOrbitor</p>
+                                </li>
+                                <li>
+                                    <h6>Nucleus Team  </h6>
+                                    <p>Journey / Rewards & Recongnization</p>
+                                </li>
+                                <li>
+                                    <h6>Something + Business</h6>
+                                    <p>By Founders</p>
+                                </li>
+                                <li>
+                                    <h6>Open Space</h6>
+                                    <p>Open Space</p>
+                                </li>
+                                <li>
+                                    <h6>Dinner</h6>
+                                    <p>Dinner</p>
+                                </li>
+                            </ul>
+
                         </div>
-                        <h2>Event Details</h2>
-                        <ul>
-                            {/* <li>
-                                <h5>Date:</h5>
-                                <h6>Sunday, 26th February 2023</h6>
-                            </li> */}
-                            <li>
-                                <h5>Time:</h5>
-                                <h6>4:00 pm onwards</h6>
-                            </li>
-                            <li>
-                                <h5>Venue:</h5>
-                                <h6>Country Club, Andheri West</h6>
-                            </li>
-                            <li>
-                                <h5>Dress Code:</h5>
-                                <h6>Traditional Indian Wear</h6>
-                            </li>
-                        </ul>
-                        <div className='scan'>
-                            <button onClick={scanClick}>Scan</button>
-                        </div>
+                        {attendance ? null: <div className='scan'>
+                        <button onClick={scanClick}>Scan Attendance</button></div>
+                        }
+                        
                     </div> : null
                 }
                 {
@@ -291,7 +375,7 @@ function Login() {
                         </div>
                     </div></div> : null
             }
-        </section>
+        </section >
     )
 }
 

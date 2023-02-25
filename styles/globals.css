@@ -122,16 +122,18 @@ input {
   box-sizing: border-box;
 }
 
+
 .c-loginpage .c-login.success-popup {
   opacity: 0.8;
   pointer-events: none;
   cursor: default;
 }
 
-.c-loginpage .c-login .logo .unniversarylogo img{
+.c-loginpage .c-login .logo .unniversarylogo img {
   width: 260px;
 }
-.c-loginpage .c-login .logo .ujblogo img{
+
+.c-loginpage .c-login .logo .ujblogo img {
   width: 70px;
 }
 
@@ -203,7 +205,8 @@ input {
   width: 100%;
 }
 
-.c-loginpage .c-popupbg {
+/* .c-loginpage */
+.c-popupbg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -212,11 +215,13 @@ input {
   height: 100%;
   display: flex;
   justify-content: center;
+  z-index: 98;
   align-items: center;
   background-color: rgb(0, 0, 0, 0.8);
 }
 
-.c-loginpage .c-loginpopup {
+/* .c-loginpage */
+.c-loginpopup {
   max-width: 460px;
   width: 90%;
   border-radius: 10px;
@@ -225,18 +230,23 @@ input {
   position: relative;
 }
 
-.c-loginpage .c-loginpopup.showpopup {
+/* .c-loginpage */
+.c-loginpopup.showpopup {
   display: block;
 }
 
-.c-loginpage .c-loginpopup img {
+/* .c-loginpage  */
+.c-loginpopup img {
   position: absolute;
-  top: calc(-50% + 60px);
+  top: calc(-50% + 50px);
   left: 50%;
   transform: translate(-50%);
+  width: 100px;
+
 }
 
-.c-loginpage .c-loginpopup h5 {
+/* .c-loginpage */
+.c-loginpopup h5 {
   font-size: 24px;
   line-height: 40px;
   color: #16274f;
@@ -245,7 +255,8 @@ input {
   text-align: center;
 }
 
-.c-loginpage .c-loginpopup h4 {
+/* .c-loginpage */
+.c-loginpopup h4 {
   font-size: 42px;
   line-height: 40px;
   color: #fe6f06;
@@ -365,14 +376,14 @@ input {
 }
 
 .countdownfour {
-    font-size: 70px;
-    line-height: 64px;
-    color: #fe6f06;
-    font-weight: 800;
-    font-family: "Mukta", sans-serif;
-    text-align: center;
-    display: flex;
-    column-gap: 10px;
+  font-size: 70px;
+  line-height: 64px;
+  color: #fe6f06;
+  font-weight: 800;
+  font-family: "Mukta", sans-serif;
+  text-align: center;
+  display: flex;
+  column-gap: 10px;
 }
 
 .show-counter .countdown-link .eventtime p {
@@ -393,10 +404,11 @@ input {
   row-gap: 20px;
 }
 
-.c-logindone .logos .unniversaryl img{
+.c-logindone .logos .unniversaryl img {
   width: 260px;
 }
-.c-logindone .logos .ujbl img{
+
+.c-logindone .logos .ujbl img {
   width: 70px;
 }
 
@@ -406,6 +418,7 @@ input {
   font-family: "Mukta";
   font-size: 16px;
 }
+
 /* .c-logindone .logos .welcome span {
   font-weight: 800;
 } */
@@ -426,4 +439,147 @@ input {
   font-family: "Mukta", sans-serif;
   border: none;
   width: 80%;
+}
+
+.wrapperScan {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../public/spaceimg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px;
+
+}
+
+.QrcodeContainer {
+  width: 90%;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Mukta', sans-serif;
+}
+
+.logo img {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+
+table {
+  color: #333;
+  background: white;
+  border: 1px solid grey;
+  font-size: 12pt;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table thead th,
+table tfoot th {
+  color: #777;
+  background: rgba(0, 0, 0, .1);
+}
+
+table caption {
+  padding: .5em;
+}
+
+table th,
+table td {
+  padding: .5em;
+  border: 1px solid lightgrey;
+}
+
+.welcomemessage h2 {
+  font-size: 48px;
+  line-height: 54px;
+  color: #fe6f06;
+  font-weight: 600;
+  font-family: "forum";
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.welcomemessage p {
+  text-align: center;
+  font-size: 32px;
+  line-height: 36px;
+  color: #a2cbda;
+  font-weight: 600;
+  font-family: "Mukta";
+
+}
+
+.social-icon ul {
+  display: none;
+}
+
+.c-logindone .programsequence{
+  color: #FFF;
+}
+.c-logindone .programsequence h2{
+  margin-bottom: 10px;
+}
+.c-logindone .programsequence ul li{
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  /* width: 40%; */
+}
+.c-logindone .programsequence ul li h6{
+  display: block;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.c-logindone .programsequence ul li p{
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.qrPopup{
+  width: 100%;
+  height: 100%;
+  /* background-color: #FFF; */
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scanButton{
+  border-radius: 32px;
+  background-color: #a2cbda;
+  font-size: 24px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Mukta", sans-serif;
+  border: none;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.scanButton2{
+  border-radius: 32px;
+  background-color: #fe6f06;
+  font-size: 24px;
+  line-height: 40px;
+  color: #ffffff;
+  font-family: "Mukta", sans-serif;
+  border: none;
+  width: 100%;
+  margin-top: 40px;
+}
+
+
+.scanContainer{
+  width: 100%;
 }
