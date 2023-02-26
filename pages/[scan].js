@@ -32,7 +32,7 @@ export default function Scan({ eventsName }) {
   const [attendance, setattendance] = useState();
 
   const [foodcounter, setfoodcounter] = useState(false);
-  const [foodscanner, setfoodScanner] = useState(false);
+  const [foodscanner, setfoodScanner] = useState(true);
   const [alldata, setAllData] = useState({});
   const [present, setPesent] = useState(false);
   const [loginfailedpopup, setLoginfailedpopup] = useState(false);
@@ -153,9 +153,9 @@ export default function Scan({ eventsName }) {
           if (alldata.attendance === 1) {
             setPesent(true)
           }
-          // if (alldata.foodcounter === 1) {
-          //   setfoodcounter(true)
-          // }
+          if (alldata.foodcounter === 1) {
+            setfoodScanner(false)
+          }
 
         });
       }
@@ -309,9 +309,9 @@ export default function Scan({ eventsName }) {
   </div>}
 
       {
-        present ?
-          <div className='scanContainer'>
-            <button className='scanButton2 scanbuttonfixed' onClick={scanFood}>Food</button></div> : null
+        foodscanner ? <div className='scanContainer'>
+        <button className='scanButton2 scanbuttonfixed' onClick={scanFood}>Food</button></div>
+          : null
       }
 
 
