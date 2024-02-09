@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Forum&family=Mukta&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Forum&family=Mukta&display=swap");
 
 html,
 body,
@@ -78,7 +78,7 @@ main {
 
 body {
   line-height: 1;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 ol,
@@ -95,7 +95,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -125,7 +125,6 @@ input {
   box-sizing: border-box;
 }
 
-
 .c-loginpage .c-login.success-popup {
   opacity: 0.8;
   pointer-events: none;
@@ -148,7 +147,6 @@ input {
   justify-content: center;
   margin-bottom: 30px;
 }
-
 
 .c-loginpage .c-login .regfrom {
   padding: 16px 42px;
@@ -245,7 +243,6 @@ input {
   left: 50%;
   transform: translate(-50%);
   width: 100px;
-
 }
 
 /* .c-loginpage */
@@ -310,7 +307,6 @@ input {
   font-weight: 500;
   font-family: "Mukta", sans-serif;
   text-align: center;
-
 }
 
 .c-logindone ul li {
@@ -358,7 +354,6 @@ input {
   text-align: center;
   display: flex;
   column-gap: 10px;
-
 }
 
 .show-counter .countdown-link .eventtime .countdown {
@@ -447,7 +442,7 @@ input {
 .wrapperScan {
   width: 100%;
   min-height: 100vh;
-  
+
   background-image: url(../public/spaceimg.png);
   background-repeat: no-repeat;
   background-position: center;
@@ -458,14 +453,13 @@ input {
   align-items: center;
   padding: 50px 20px;
   background-attachment: fixed;
-
 }
 
 .QrcodeContainer {
   width: 90%;
   text-align: center;
-  color: #FFF;
-  font-family: 'Mukta', sans-serif;
+  color: #fff;
+  font-family: "Mukta", sans-serif;
 }
 
 .logo img {
@@ -486,16 +480,16 @@ table {
 table thead th,
 table tfoot th {
   color: #777;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 table caption {
-  padding: .5em;
+  padding: 0.5em;
 }
 
 table th,
 table td {
-  padding: .5em;
+  padding: 0.5em;
   border: 1px solid lightgrey;
 }
 
@@ -521,10 +515,7 @@ table td {
   color: #a2cbda;
   font-weight: 600;
   font-family: "Mukta";
-
 }
-
-
 
 .welcomemessage p {
   text-align: center;
@@ -533,18 +524,16 @@ table td {
   color: #a2cbda;
   font-weight: 600;
   font-family: "Mukta";
-
 }
 
 .social-icon ul {
   display: none;
 }
 
-.programsequence{
-  color: #FFF;
+.programsequence {
+  color: #fff;
   padding-bottom: 40px;
 }
-
 
 .programsequence h2 {
   text-align: center;
@@ -555,16 +544,15 @@ table td {
   font-family: "Mukta";
   margin-bottom: 10px;
   margin-top: 30px;
-
 }
 
-.programsequence ul{
+.programsequence ul {
   display: flex;
   flex-direction: column;
   row-gap: 30px;
 }
 
-.programsequence ul li{
+.programsequence ul li {
   display: block;
   text-align: center;
   /* margin-bottom: 20px;
@@ -572,26 +560,24 @@ table td {
   position: relative;
   width: 100%;
   /* width: 40%; */
-
 }
-.programsequence ul li::after{
+.programsequence ul li::after {
   content: "";
   width: 50%;
   height: 1px;
-  border-bottom:1px dashed #a2cbda ;
+  border-bottom: 1px dashed #a2cbda;
   position: absolute;
   bottom: -15px;
   left: 25%;
-
 }
-.programsequence ul li h6{
+.programsequence ul li h6 {
   display: block;
   font-size: 22px;
   margin-bottom: 5px;
   color: #a2cbda;
-  font-family: 'Forum', cursive;
+  font-family: "Forum", cursive;
 }
-.programsequence ul li p{
+.programsequence ul li p {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
@@ -599,7 +585,7 @@ table td {
   font-family: "Mukta", sans-serif;
 }
 
-.qrPopup{
+.qrPopup {
   width: 100%;
   height: 100%;
   /* background-color: #FFF; */
@@ -612,7 +598,7 @@ table td {
   align-items: center;
 }
 
-.scanButton{
+.scanButton {
   border-radius: 32px;
   background-color: #a2cbda;
   font-size: 24px;
@@ -624,7 +610,7 @@ table td {
   margin-top: 40px;
 }
 
-.scanButton2{
+.scanButton2 {
   border-radius: 32px;
   background-color: #fe6f06;
   font-size: 24px;
@@ -636,39 +622,38 @@ table td {
   margin-top: 40px;
 }
 
-
-.scanContainer{
+.scanContainer {
   width: 100%;
 }
 
-.scanbuttonfixed{
+.scanbuttonfixed {
   position: fixed;
   left: 5%;
   bottom: 10px;
   width: 90%;
 }
 
-.footerHome{
+.footerHome {
   color: #a2cbda;
-  font-family: 'Forum', cursive;
+  font-family: "Forum", cursive;
   font-size: 22px;
   text-align: center;
-  
 }
 
-.QrcodeContainer h2{
-  font-family: 'Forum', cursive;
+.QrcodeContainer h2 {
+  font-family: "Forum", cursive;
   font-size: 36px;
 }
 
 table {
   border-collapse: collapse;
 }
- th {
+th {
   background: #ccc;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ccc;
   padding: 8px;
 }
@@ -679,4 +664,15 @@ tr:nth-child(even) {
 
 tr:hover {
   background: #d1d1d1;
+}
+
+.nominees {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.nominees h5 {
+  color: #a2cbda;
+  font-size: 20px;
 }

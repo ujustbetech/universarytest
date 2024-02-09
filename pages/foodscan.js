@@ -13,30 +13,21 @@ const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false });
 
 export default function FoodScan() {
 
-    // console.log("EventsName:", eventsName.scan);
-    //   const queryname = eventsName.scan;
-    //   console.log(queryname);
-    const [text, setText] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [scanResultFile, setScanResultFile] = useState('');
-    const [scanResultWebCam, setScanResultWebCam] = useState('');
-    const [userDetails, setuserDetails] = useState([]);
-
-    // const classes = useStyles();
-    const qrRef = useRef(null);
-    const [phonenumber, setphonenumber] = useState();
-    const [firstname, setfirstname] = useState();
-    const [lastname, setlastname] = useState();
-    const [role, setrole] = useState();
-    const [registeration, setregisteration] = useState();
-    const [attendance, setattendance] = useState();
-
+    const [firstname, setfirstname] = useState('');
+    const [birthdate, setbirthdate] = useState('');
+    const [role, setrole] = useState('');
+    const [mobilenumber, setmobilenumber] = useState('');
+    const [showpopup, setshowpopup] = useState(false);
+    const [showpopup2, setshowpopup2] = useState(false);
+    const [responsedata, setresponsedata] = useState("");
+    const [registration, setregistration] = useState(false);
+    const [loginstate, setlogin] = useState(true);
+    const [loginfailedpopup, setloginfailedpopup] = useState(false);
+    const [loginDone, setloginDone] = useState(false);
+    const [attendance, setattendance] = useState(false);
     const [foodcounter, setfoodcounter] = useState(false);
-    const [foodscanner, setfoodScanner] = useState(true);
-    const [alldata, setAllData] = useState({});
-    const [present, setPesent] = useState(false);
-    const [loginfailedpopup, setLoginfailedpopup] = useState(false);
-    const router2 = useRouter();
+
+    const router2 = useRouter()
 
 
 
@@ -114,37 +105,79 @@ export default function FoodScan() {
         }
     }
 
+    const handleClick = async (e) => {
+        e.preventDefault();
+        const user = {
+            firstname: firstname,
+            lastname: lastname,
+            role: role,
+            number: mobilenumber,
+        }
+        console.log(user);
+        const response = await axios
+            .post('https://unniversary.ujustconnect.com/register.php', user)
+            .catch((error) => console.log('Error: ', error));
+        if (response && response.data) {
+            console.log(response);
+            console.log(response.data);
+            if (response.status === 201) {
+                setshowpopup(true);
+                setresponsedata(response.data);
+                setTimeout(() => {
+                    // alert("test");
+                    setshowpopup(false);
+                    setfirstname("")
+                    setlastname("")
+                    setmobilenumber("")
+                    setloginDone(true)
+                    setlogin(false)
+                    setregistration(false)
+                    localstorage(response.data);
+
+
+                }, 3000);
+
+            }
+            if (response.status === 200) {
+                setshowpopup2(true);
+
+            }
+        }
+
+
+        console.log(showpopup);
+    };
 
     useEffect(() => {
 
 
-        const saved = localStorage.getItem("itmes");
-        const localstoragedata = JSON.parse(saved)
+        // const saved = localStorage.getItem("itmes");
+        // const localstoragedata = JSON.parse(saved)
 
-        if (saved) {
-            console.log("already Login", localstoragedata.firstname);
-            console.log("number match");
-            axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${localstoragedata.phonenumber}/`).then(response => {
-                console.log(response);
-                const alldata = response.data;
-                setAllData(alldata)
-                if (alldata.foodcounter === 1) {
-                    setPesent(true);
-                    setfoodScanner(true)
-                }
-                else{
-                    console.log("false");
-                }
-                // if (alldata.foodcounter === 1) {
-                //   setfoodcounter(true)
-                // }
+        // if (saved) {
+        //     console.log("already Login", localstoragedata.firstname);
+        //     console.log("number match");
+        //     axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${localstoragedata.phonenumber}/`).then(response => {
+        //         console.log(response);
+        //         const alldata = response.data;
+        //         setAllData(alldata)
+        //         if (alldata.foodcounter === 1) {
+        //             setPesent(true);
+        //             setfoodScanner(true)
+        //         }
+        //         else{
+        //             console.log("false");
+        //         }
+        //         // if (alldata.foodcounter === 1) {
+        //         //   setfoodcounter(true)
+        //         // }
 
-            });
+        //     });
 
 
-        } else {
-            router2.push("/")
-        }
+        // } else {
+        //     router2.push("/")
+        // }
     }, [])
 
 
@@ -159,27 +192,43 @@ export default function FoodScan() {
         <img src='/universary.svg' />
       </div> */}
 
+            <section className='c-loginpage'>
+                <div className='c-login'>
+                    <div>Back</div>
+                    <form onSubmit={handleClick}>
+                        <div className='regfrom'>
+                            <div className='nominees'>
+                                <h5>Relative 1</h5>
+                                <input required minlength="10" type='tel' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
+                                    setmobilenumber(event.target.value)
+                                }}></input>
+                                <input required value={firstname} placeholder='Name' onChange={(event) => {
+                                    setfirstname(event.target.value)
+                                }}></input>
+                                <input type='date' required value={birthdate} placeholder='Birth Date' onChange={(event) => {
+                                    setbirthdate(event.target.value)
+                                }}></input>
+                            </div>
+                            <div className='nominees'>
+                                <h5>Relative 2</h5>
+                                <input required minlength="10" type='tel' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
+                                    setmobilenumber(event.target.value)
+                                }}></input>
+                                <input required value={firstname} placeholder='First Name' onChange={(event) => {
+                                    setfirstname(event.target.value)
+                                }}></input>
+                                <input type='date' required value={birthdate} placeholder='Birth Date' onChange={(event) => {
+                                    setbirthdate(event.target.value)
+                                }}></input>
+                            </div>
 
-            {
-                foodscanner ? <div className='qrPopup'>
-                    <div className='QrcodeContainer'>
-                        {
-                            alldata.foodcounter === 1 ? <h2>Experience Tonight's delicacies </h2> : <QrReader
-                                delay={300}
-                                style={{ width: '100%' }}
-                                onError={handleErrorWebCam}
-                                onScan={handleScanWebCamfood}
-                            />
-                        }
-
-                        {/* <h2>Scan here</h2> */}
-
-                        <button className='scanButton' onClick={closeScaner}>Close Scanner</button>
+                            <button type="submit" > Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
 
 
-                    </div>
-                </div> : null
-            }
 
             {/* {
         <div className='scanContainer'>

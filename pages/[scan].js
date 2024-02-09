@@ -34,7 +34,7 @@ export default function Scan({ eventsName }) {
   const [foodcounter, setfoodcounter] = useState(false);
   const [foodscanner, setfoodScanner] = useState(true);
   const [alldata, setAllData] = useState({});
-  const [present, setPesent] = useState(false);
+  const [present, setPesent] = useState(true);
   const [loginfailedpopup, setLoginfailedpopup] = useState(false);
   const router2 = useRouter();
 
@@ -81,7 +81,7 @@ export default function Scan({ eventsName }) {
 
     if (result) {
       const text3 = JSON.stringify(result)
-      console.log(result[17], "text2", result[14]);
+      console.log(result, "text2", result[14]);
 
 
 
@@ -142,33 +142,33 @@ export default function Scan({ eventsName }) {
     const saved = localStorage.getItem("itmes");
     const localstoragedata = JSON.parse(saved)
 
-    if (saved) {
-      console.log("already Login", localstoragedata.firstname);
-      if (queryname === localstoragedata.phonenumber) {
-        console.log("number match");
-        axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${queryname}/`).then(response => {
-          console.log(response);
-          const alldata = response.data;
-          setAllData(alldata)
-          if (alldata.attendance === 1) {
-            setPesent(true)
-          }
-          if (alldata.foodcounter === 1) {
-            setfoodScanner(false)
-          }
+    // if (saved) {
+    //   console.log("already Login", localstoragedata.firstname);
+    //   if (queryname === localstoragedata.phonenumber) {
+    //     console.log("number match");
+    //     axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${queryname}/`).then(response => {
+    //       console.log(response);
+    //       const alldata = response.data;
+    //       setAllData(alldata)
+    //       if (alldata.attendance === 1) {
+    //         setPesent(true)
+    //       }
+    //       if (alldata.foodcounter === 1) {
+    //         setfoodScanner(false)
+    //       }
 
-        });
-      }
+    //     });
+    //   }
 
-      else {
-        console.log("Invalid URL");
-        setLoginfailedpopup(true);
-      }
+    //   else {
+    //     console.log("Invalid URL");
+    //     setLoginfailedpopup(true);
+    //   }
 
 
-    } else {
-      router2.push("/")
-    }
+    // } else {
+    //   router2.push("/")
+    // }
   }, [])
 
 
