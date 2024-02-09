@@ -98,11 +98,11 @@ function Login() {
             firstname: firstname,
             lastname: lastname,
             role: role,
-            phonenumber: mobilenumber,
+            number: mobilenumber,
         }
         console.log(user);
         const response = await axios
-            .post('https://plankton-app-i2dnd.ondigitalocean.app/reg/', user)
+            .post('https://unniversary.ujustconnect.com/register.php', user)
             .catch((error) => console.log('Error: ', error));
         if (response && response.data) {
             console.log(response);
@@ -252,7 +252,7 @@ function Login() {
                             }}>
                                 <option value="none" selected disabled hidden>Select Role</option>
                                 <option value="Orbiter">Orbiter</option>
-                                <option value="Cosmonaut">Cosmonaut</option>
+                                <option value="Cosmonaut">CosmOrbiter</option>
                                 <option value="Guest">Guest</option>
                             </select>
 
